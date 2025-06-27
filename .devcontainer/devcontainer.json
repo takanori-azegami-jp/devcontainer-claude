@@ -1,0 +1,24 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu24.04", // Base image
+  "features": {
+    "ghcr.io/anthropics/devcontainer-features/claude-code:latest": {} // Claude Code feature for AI coding assistance
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "[json]": {
+          "editor.defaultFormatter": "vscode.json-language-features",
+          "editor.formatOnSave": true
+        },
+        "[jsonc]": {
+          "editor.defaultFormatter": "vscode.json-language-features",
+          "editor.formatOnSave": true
+        },
+        "[jsonl]": {
+          "editor.defaultFormatter": "vscode.json-language-features",
+          "editor.formatOnSave": true
+        }
+      }
+    }
+  }
+}
