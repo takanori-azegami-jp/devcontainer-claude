@@ -31,6 +31,41 @@ cd devcontainer-claude
 3. **Claude Code の利用**
    - コンテナ内で Claude Code が利用可能になります。
 
+## Git設定手順
+
+DevContainer内でGitを使用する場合の設定手順：
+
+### 1. 安全なディレクトリとして登録
+```bash
+git config --global --add safe.directory /workspaces/devcontainer-claude
+```
+
+### 2. ユーザー情報を設定
+```bash
+git config --global user.name "あなたの名前"
+git config --global user.email "your-email@example.com"
+```
+
+### 3. 基本的なGit操作
+```bash
+# 状態確認
+git status
+
+# ファイルをステージング
+git add .
+
+# コミット
+git commit -m "コミットメッセージ"
+
+# リモートリポジトリにプッシュ
+git push origin main
+```
+
+### 注意事項
+- DevContainerはホストのディレクトリをマウントしているため、コンテナ内での変更はホストに自動的に反映されます
+- SSH認証を使用する場合は、SSH鍵がコンテナからアクセス可能である必要があります
+- HTTPSを使用する場合は、認証情報の設定が必要な場合があります
+
 ## 実装済みプロジェクト
 
 ### テトリスゲーム (tetris-game/)
