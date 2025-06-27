@@ -31,6 +31,72 @@ cd devcontainer-claude
 3. **Claude Code の利用**
    - コンテナ内で Claude Code が利用可能になります。
 
+## 実装済みプロジェクト
+
+### テトリスゲーム (tetris-game/)
+
+このリポジトリには、Next.js + TypeScript + Tailwind CSSで実装されたテトリスゲームが含まれています。
+
+#### 特徴
+- 完全に動作するテトリスゲーム
+- 全テトリミノ（I, O, T, S, Z, J, L）対応
+- キーボード操作（矢印キー、回転、ハードドロップ）
+- スコア計算とレベルアップ機能
+- ライン消去機能
+- 一時停止とリスタート機能
+- レスポンシブデザイン
+
+#### 操作方法
+- `←` `→` `↓` : テトリミノの移動
+- `↑` または `X` : テトリミノの回転
+- `Space` : ハードドロップ
+- `P` または `Esc` : 一時停止/再開
+- `R` : ゲームリスタート
+
+#### 実行方法
+```bash
+cd tetris-game
+npm install
+npm run dev
+```
+
+#### ファイル構成
+```
+tetris-game/
+├── src/
+│   ├── components/          # UI コンポーネント
+│   │   ├── GameBoard.tsx    # ゲーム盤面
+│   │   ├── GameInfo.tsx     # スコア表示
+│   │   ├── NextTetrominoPreview.tsx  # 次のテトリミノ表示
+│   │   └── TetrisGame.tsx   # メインゲーム
+│   ├── hooks/               # カスタムフック
+│   │   ├── useGameLoop.ts   # ゲームループ
+│   │   ├── useKeyboard.ts   # キーボード入力
+│   │   └── useTetris.ts     # メインゲームロジック
+│   ├── types/               # 型定義
+│   │   └── tetris.ts        # テトリス関連の型
+│   └── utils/               # ユーティリティ
+│       └── tetrominos.ts    # テトリミノ形状定義
+```
+
+## 開発環境設定
+
+### CLAUDE.md ファイル
+このリポジトリには `CLAUDE.md` ファイルが含まれており、Claude Code が効率的に作業できるよう設定されています。
+
+#### 主な設定
+- 日本語での会話を強制
+- ファイル更新時の承認要求
+- 既存内容の保護（追加のみ）
+- 機密情報の記録禁止
+- プロジェクト慣習への準拠
+
+### DevContainer 設定
+`.devcontainer/devcontainer.json` で以下が設定されています：
+- Ubuntu 24.04 ベースイメージ
+- Claude Code 機能の自動インストール
+- JSON ファイルのフォーマット設定
+
 ## 補足
 
 - 特定の言語向けの開発環境にする方法
