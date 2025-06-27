@@ -36,9 +36,6 @@ DevContainer内でGitを使用する場合：
 # 安全なディレクトリとして登録
 git config --global --add safe.directory /workspaces/devcontainer-claude
 
-# ユーザー情報設定
-git config --global user.name "あなたの名前"
-git config --global user.email "your-email@example.com"
 ```
 
 ## 設定内容
