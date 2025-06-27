@@ -1,142 +1,63 @@
-# Claude Code を Windows 上で DevContainer で動かす方法
+# Windows環境でClaude CodeをDevContainerで動かす方法
 
-この記事では、DevContainer を利用して Windows 環境でも Claude Code を簡単かつ確実に動作させる手順を説明します。
+DevContainerを利用してWindows環境でClaude Codeを簡単かつ確実に動作させる手順を説明します。
 
 ## 前提条件
 
-- `Rancher Desktop` がインストールされていること
-  `Visual Studio Code` および `Dev Containers 拡張機能` がインストールされていること
+以下がインストールされていることを確認してください：
+- Rancher Desktop
+- Visual Studio Code
+- Dev Containers拡張機能
 
 ## セットアップ手順
 
-1. **このリポジトリをクローン**
-   `bash
+### 1. リポジトリのクローン
+```bash
 git clone <このリポジトリのURL>
 cd devcontainer-claude
-    `
-
-2. **VS Code でフォルダを開く**
-
-   - VS Code で`devcontainer-claude`フォルダを開きます。
-   - `Dev Containers`かコンテナを開始する
-
-- ![alt text](./images/image01.png)
-
-  - `devcontainer.json`を選択して`Run Claude Code`を開始する
-
--![alt text](./images/image02.png)
-
-![alt text](./images/image03.png))
-
-3. **Claude Code の利用**
-   - コンテナ内で Claude Code が利用可能になります。
-
-## Git設定手順
-
-DevContainer内でGitを使用する場合の設定手順：
-
-### 1. 安全なディレクトリとして登録
-```bash
-git config --global --add safe.directory /workspaces/devcontainer-claude
 ```
 
-### 2. ユーザー情報を設定
+### 2. DevContainerでの起動
+1. VS Codeで`devcontainer-claude`フォルダを開く
+2. コマンドパレット（Ctrl+Shift+P）で「Dev Containers: Reopen in Container」を選択
+3. DevContainerが自動的にビルドされ、Claude Codeが利用可能になります
+
+![DevContainer起動手順](./images/image01.png)
+
+![DevContainer設定選択](./images/image02.png)
+
+![Claude Code実行画面](./images/image03.png)
+
+## Git設定（初回のみ）
+
+DevContainer内でGitを使用する場合：
+
 ```bash
+# 安全なディレクトリとして登録
+git config --global --add safe.directory /workspaces/devcontainer-claude
+
+# ユーザー情報設定
 git config --global user.name "あなたの名前"
 git config --global user.email "your-email@example.com"
 ```
 
-### 3. 基本的なGit操作
-```bash
-# 状態確認
-git status
+## 設定内容
 
-# ファイルをステージング
-git add .
+### DevContainer設定
+- Ubuntu 24.04ベースイメージ
+- Claude Code機能の自動インストール
+- JSONファイルのフォーマット設定
 
-# コミット
-git commit -m "コミットメッセージ"
+### CLAUDE.mdファイル
+Claude Codeが効率的に作業するための設定：
+- 日本語での会話強制
+- 安全な開発ガイドライン
+- プロジェクト固有の制約事項
 
-# リモートリポジトリにプッシュ
-git push origin main
-```
+## カスタマイズ
 
-### 注意事項
-- DevContainerはホストのディレクトリをマウントしているため、コンテナ内での変更はホストに自動的に反映されます
-- SSH認証を使用する場合は、SSH鍵がコンテナからアクセス可能である必要があります
-- HTTPSを使用する場合は、認証情報の設定が必要な場合があります
-
-## 実装済みプロジェクト
-
-### テトリスゲーム (tetris-game/)
-
-このリポジトリには、Next.js + TypeScript + Tailwind CSSで実装されたテトリスゲームが含まれています。
-
-#### 特徴
-- 完全に動作するテトリスゲーム
-- 全テトリミノ（I, O, T, S, Z, J, L）対応
-- キーボード操作（矢印キー、回転、ハードドロップ）
-- スコア計算とレベルアップ機能
-- ライン消去機能
-- 一時停止とリスタート機能
-- レスポンシブデザイン
-
-#### 操作方法
-- `←` `→` `↓` : テトリミノの移動
-- `↑` または `X` : テトリミノの回転
-- `Space` : ハードドロップ
-- `P` または `Esc` : 一時停止/再開
-- `R` : ゲームリスタート
-
-#### 実行方法
-```bash
-cd tetris-game
-npm install
-npm run dev
-```
-
-#### ファイル構成
-```
-tetris-game/
-├── src/
-│   ├── components/          # UI コンポーネント
-│   │   ├── GameBoard.tsx    # ゲーム盤面
-│   │   ├── GameInfo.tsx     # スコア表示
-│   │   ├── NextTetrominoPreview.tsx  # 次のテトリミノ表示
-│   │   └── TetrisGame.tsx   # メインゲーム
-│   ├── hooks/               # カスタムフック
-│   │   ├── useGameLoop.ts   # ゲームループ
-│   │   ├── useKeyboard.ts   # キーボード入力
-│   │   └── useTetris.ts     # メインゲームロジック
-│   ├── types/               # 型定義
-│   │   └── tetris.ts        # テトリス関連の型
-│   └── utils/               # ユーティリティ
-│       └── tetrominos.ts    # テトリミノ形状定義
-```
-
-## 開発環境設定
-
-### CLAUDE.md ファイル
-このリポジトリには `CLAUDE.md` ファイルが含まれており、Claude Code が効率的に作業できるよう設定されています。
-
-#### 主な設定
-- 日本語での会話を強制
-- ファイル更新時の承認要求
-- 既存内容の保護（追加のみ）
-- 機密情報の記録禁止
-- プロジェクト慣習への準拠
-
-### DevContainer 設定
-`.devcontainer/devcontainer.json` で以下が設定されています：
-- Ubuntu 24.04 ベースイメージ
-- Claude Code 機能の自動インストール
-- JSON ファイルのフォーマット設定
-
-## 補足
-
-- 特定の言語向けの開発環境にする方法
-- https://containers.dev/features から必要な環境を選んで、`devcontainer.json` の `features` に追加しましょう。
+特定の言語・フレームワーク用の環境が必要な場合は、[containers.dev/features](https://containers.dev/features)から必要な機能を選んで`.devcontainer/devcontainer.json`の`features`セクションに追加してください。
 
 ## 参考
 
--[Windows 上の DevContainer で簡単に Claude Code 動かす方法](https://zenn.dev/taichi/articles/a4ea249f7d0f6b)
+- [Windows 上の DevContainer で簡単に Claude Code 動かす方法](https://zenn.dev/taichi/articles/a4ea249f7d0f6b)
